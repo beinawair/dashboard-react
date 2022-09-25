@@ -9,7 +9,7 @@ import { links } from '../config/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const Sidebar = () => {
-  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize, currentColor } = useStateContext();
 
   const handleCloseSidebar = () => {
     if(activeMenu && screenSize <= 900) {
@@ -31,7 +31,7 @@ const Sidebar = () => {
             <TooltipComponent content="Menu" position="BottomCenter">
               <button type='button'
                 onClick={() => setActiveMenu((prev) => !prev)}
-                className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block"
+                className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block dark:text-gray-200"
               >
                 <MdOutlineCancel/>
               </button>
@@ -47,6 +47,9 @@ const Sidebar = () => {
                   <NavLink to={`/${link.name}`}
                     key={link.name}
                     onClick={handleCloseSidebar}
+                    style={({ isActive }) => ({
+                      backgroundColor: isActive ? currentColor : ''
+                    })}
                     className={({ isActive }) => 
                       isActive ? activeLink : normalLink
                     }

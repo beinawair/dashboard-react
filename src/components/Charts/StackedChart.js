@@ -24,7 +24,7 @@ const StackedChart = ({ width, height }) => {
     >
       <Inject services={[Legend, Category, StackingColumnSeries, Tooltip]} />
       <SeriesCollectionDirective>
-        {stackedCustomSeries.map((item, index) => <SeriesDirective key={index} {...item} fill={item.background} />)}
+        {stackedCustomSeries.map((item, index) => <SeriesDirective key={index} {...item} />)}
       </SeriesCollectionDirective>
     </ChartComponent>
   )
